@@ -13,4 +13,9 @@ public class ThyController {
         map.addAttribute("host", "http://xxxxxyuyyyyy.com");
         return "index";
     }
+
+    @RequestMapping("/hello")
+    public String index() {
+        return "hello";
+    }
 }
