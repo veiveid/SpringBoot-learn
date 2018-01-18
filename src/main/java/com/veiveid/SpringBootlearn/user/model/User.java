@@ -1,4 +1,4 @@
-package com.veiveid.springboot_learn.user.model;
+package com.veiveid.SpringBootlearn.user.model;
 
 public class User {
     private Long id;
