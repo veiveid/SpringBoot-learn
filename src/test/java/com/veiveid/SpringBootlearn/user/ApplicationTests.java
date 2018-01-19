@@ -1,5 +1,7 @@
 package com.veiveid.SpringBootlearn.user;
 
+import com.veiveid.SpringBootlearn.user.dao.UserRepository;
+import com.veiveid.SpringBootlearn.user.model.User;
 import com.veiveid.SpringBootlearn.user.service.UserService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,6 +19,17 @@ public class ApplicationTests {
 
     @Autowired
     private UserService userSerivce;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Test
+    public void test() throws Exception {
+        User u = userRepository.findByName("a");
+        System.out.println(u);
+    }
+
+
 
 
     @Test
