@@ -3,6 +3,7 @@ package com.veiveid.SpringBootlearn.user.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -10,6 +11,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Transactional(rollbackFor=Exception.class)
     @Override
     public void create(String name, Integer age) {
         jdbcTemplate.update("insert into USER(NAME, AGE) values(?, ?)", name, age);

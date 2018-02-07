@@ -1,10 +1,11 @@
 package com.veiveid.SpringBootlearn.user;
 
+import com.veiveid.SpringBootlearn.user.dao.UserMapper;
 import com.veiveid.SpringBootlearn.user.dao.UserRepository;
+import com.veiveid.SpringBootlearn.user.model.User2;
 import com.veiveid.SpringBootlearn.user.model.User;
 import com.veiveid.SpringBootlearn.user.service.UserService;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class ApplicationTests {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Test
     public void test() throws Exception {
@@ -53,5 +57,16 @@ public class ApplicationTests {
         System.out.println("==============================>");
         Assert.assertEquals(4, userSerivce.getAllUsers().intValue());
         System.out.println("----------------------->");
+    }
+
+    @Test
+    public void testMyBatis(){
+        /*User2 u = userMapper.findByName("a");
+        System.out.println(u);
+        int n = userMapper.insert("张某",88);
+        System.out.println("n="+n);*/
+        User2 u2 = new User2(100,"张某",26L);
+        userMapper.update(u2);
+
     }
 }
