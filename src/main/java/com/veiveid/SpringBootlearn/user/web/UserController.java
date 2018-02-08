@@ -1,6 +1,8 @@
 package com.veiveid.SpringBootlearn.user.web;
 
 import com.veiveid.SpringBootlearn.user.model.User;
+import com.veiveid.SpringBootlearn.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -12,6 +14,9 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     // 创建线程安全的Map
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long,User>());
@@ -54,5 +59,11 @@ public class UserController {
         // 处理"/users/{id}"的DELETE请求，用来删除User
         users.remove(id);
         return "success";
+    }
+
+    @RequestMapping(value="/user.json", method=RequestMethod.GET)
+    public List<Map<String,Object>> findUserByName(@RequestParam(required = true) String  name){
+        List<Map<String,Object>> res = userService.findByName(name);
+        return res;
     }
 }

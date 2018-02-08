@@ -1,5 +1,10 @@
 package com.veiveid.SpringBootlearn.user.service;
 
+import com.veiveid.SpringBootlearn.user.model.User;
+
+import java.util.List;
+import java.util.Map;
+
 public interface UserService {
     /**
      * 新增一个用户
@@ -23,5 +28,10 @@ public interface UserService {
      * 删除所有用户
      */
     void deleteAllUsers();
+
+    /**
+     *
+     */
+    List<Map<String,Object>> findByName(String name);
 
 }

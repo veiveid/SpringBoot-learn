@@ -1,9 +1,13 @@
 package com.veiveid.SpringBootlearn.user.service;
 
+import com.veiveid.SpringBootlearn.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,5 +34,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteAllUsers() {
         jdbcTemplate.update("delete from USER");
+    }
+
+    @Override
+    public List<Map<String,Object>> findByName(String name) {
+        List<Map<String,Object>> res = jdbcTemplate.queryForList("select * from user where name=?",name);
+        return res;
     }
 }
