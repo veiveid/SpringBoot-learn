@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -32,6 +34,9 @@ public class ApplicationTests {
 
     @Autowired
     private Task task;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
 
     @Test
@@ -94,6 +99,17 @@ public class ApplicationTests {
         }
         long end = System.currentTimeMillis();
         System.out.println("任务全部完成，总耗时：" + (end - start) + "毫秒");
+    }
+
+    @Test
+    public void sendSimpleMail(){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("85083023@qq.com");
+        message.setTo("85083023@qq.com");
+        message.setSubject("主题：简单邮件");
+        message.setText("测试邮件内容");
+
+        mailSender.send(message);
     }
 
 }
